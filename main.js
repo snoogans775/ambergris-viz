@@ -28,13 +28,11 @@ app.get('/us-states-shapefile', (request, response) => {
 	//get json in /data
 })
 
-const jsonToPostgres(json) {
-	for( row of json) {
-		const query =`'INSERT INTO us_states_features
-			SELECT * FROM json_populate_recordset(NULL::us_states_features,
-			${json}
-		)`
-	}
+const jsonDbInsert(json) {
+	const query =`'INSERT INTO us_states_features
+		SELECT * FROM json_populate_recordset(NULL::us_states_features,
+		${json}
+	)`
 }
 
 // Run server
